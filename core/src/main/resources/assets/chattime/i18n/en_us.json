@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "chattime": {
+      "name": "ChatTime",
+      "enabled": {
+        "name": "Enabled"
+      },
+      "style": {
+        "name": "Style"
+      },
+      "format": {
+        "name": "Format"
+      }
+    }
+  }
+}

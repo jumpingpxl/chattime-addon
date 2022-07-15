@@ -75,7 +75,7 @@ addon {
         displayName("ChatTime")
         author("JumpingPxl")
         description("Display the current time in front of every message in chat.")
-        version(System.getenv().getOrDefault("VERSION", "0.0.0"))
+        version("1.0.0")
     }
 
     dev {

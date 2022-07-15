@@ -27,7 +27,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("net.labymod.gradle", "addon", "0.2.28")
+        classpath("net.labymod.gradle", "addon", "0.2.31")
     }
 }
 
@@ -50,6 +50,10 @@ subprojects {
         maven("https://libraries.minecraft.net/")
         maven("https://repo.spongepowered.org/repository/maven-public/")
         mavenLocal()
+    }
+
+    tasks.compileJava {
+        options.encoding = "UTF-8"
     }
 }
 
@@ -78,4 +82,6 @@ addon {
         releaseChannel = "improvement-addon-api"
         commitReference = "unknown"
     }
+
+    internalRelease()
 }

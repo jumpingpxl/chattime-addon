@@ -21,7 +21,6 @@ public class ChatTimeConfiguration extends Config {
   private String format = "HH:mm:ss";
 
   private transient ChatTimeStyle chatTimeStyle = ChatTimeStyle.of(this.style);
-  
   private transient ChatTimeFormatting chatTimeFormatting = ChatTimeFormatting.of(this.format);
 
   public boolean enabled() {

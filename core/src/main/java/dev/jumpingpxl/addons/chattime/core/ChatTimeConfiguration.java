@@ -1,9 +1,10 @@
 package dev.jumpingpxl.addons.chattime.core;
 
-import dev.jumpingpxl.addons.chattime.core.settings.options.ChatTimeFormatting;
+import dev.jumpingpxl.addons.chattime.core.settings.options.ChatTimeFormat;
 import dev.jumpingpxl.addons.chattime.core.settings.options.ChatTimeStyle;
+import dev.jumpingpxl.addons.chattime.core.settings.widgets.formatting.FormattingWidget.FormattingSetting;
+import dev.jumpingpxl.addons.chattime.core.settings.widgets.style.StyleSettingWidget.StyleSetting;
 import net.labymod.api.client.gui.screen.widget.widgets.input.SwitchWidget.SwitchSetting;
-import net.labymod.api.client.gui.screen.widget.widgets.input.TextFieldWidget.TextFieldSetting;
 import net.labymod.api.configuration.loader.Config;
 import net.labymod.api.configuration.loader.annotation.ConfigName;
 
@@ -14,32 +15,21 @@ public class ChatTimeConfiguration extends Config {
   @SwitchSetting
   private boolean enabled = true;
 
-  @TextFieldSetting
-  private String style = "&e┃ &6%time% &8» &r";
+  @StyleSetting
+  private ChatTimeStyle style = ChatTimeStyle.of("&e┃ &6%time% &8» &r");
 
-  @TextFieldSetting
-  private String format = "HH:mm:ss";
-
-  private transient ChatTimeStyle chatTimeStyle = ChatTimeStyle.of(this.style);
-  private transient ChatTimeFormatting chatTimeFormatting = ChatTimeFormatting.of(this.format);
+  @FormattingSetting
+  private ChatTimeFormat format = ChatTimeFormat.of("HH:mm:ss");
 
   public boolean enabled() {
     return this.enabled;
   }
 
   public ChatTimeStyle style() {
-    if (!this.chatTimeStyle.rawValue().equals(this.style)) {
-      this.chatTimeStyle.setRawValue(this.style);
-    }
-
-    return this.chatTimeStyle;
+    return this.style;
   }
 
-  public ChatTimeFormatting formatting() {
-    if (!this.chatTimeFormatting.rawValue().equals(this.format)) {
-      this.chatTimeFormatting.setRawValue(this.format);
-    }
-
-    return this.chatTimeFormatting;
+  public ChatTimeFormat formatting() {
+    return this.format;
   }
 }

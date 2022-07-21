@@ -25,19 +25,22 @@ public abstract class ChatTimeOption<T> {
   }
 
   public final T computedValue() {
-    if (Objects.isNull(this.computedValue)) {
-      this.computedValue = this.updateValue(this.rawValue());
-    }
-
+    this.recompute();
     return this.computedValue;
   }
 
   public final void setRawValue(String rawValue) {
     this.value = Objects.isNull(rawValue) ? this.defaultValue : rawValue;
-    this.computedValue = this.updateValue(rawValue);
+    this.computedValue = null;
   }
 
   public void reset() {
     this.setRawValue(null);
+  }
+
+  public void recompute() {
+    if (Objects.isNull(this.computedValue)) {
+      this.computedValue = this.updateValue(this.rawValue());
+    }
   }
 }

@@ -1,15 +1,16 @@
 package dev.jumpingpxl.addons.chattime.core.settings.options;
 
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 
-public class ChatTimeFormatting extends ChatTimeOption<SimpleDateFormat> {
+public class ChatTimeFormat extends ChatTimeOption<SimpleDateFormat> {
 
-  protected ChatTimeFormatting(String defaultValue) {
+  protected ChatTimeFormat(String defaultValue) {
     super(defaultValue);
   }
 
-  public static ChatTimeFormatting of(String defaultValue) {
-    return new ChatTimeFormatting(defaultValue);
+  public static ChatTimeFormat of(String defaultValue) {
+    return new ChatTimeFormat(defaultValue);
   }
 
   @Override
@@ -21,5 +22,13 @@ public class ChatTimeFormatting extends ChatTimeOption<SimpleDateFormat> {
     } catch (IllegalArgumentException e) {
       return null;
     }
+  }
+
+  public String realTimeValue() {
+    if (Objects.isNull(this.computedValue())) {
+      return null;
+    }
+
+    return this.computedValue().format(System.currentTimeMillis());
   }
 }

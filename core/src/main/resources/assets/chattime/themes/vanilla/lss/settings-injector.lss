@@ -1,0 +1,11 @@
+StyleSetting {
+  width: 100%;
+  height: 20;
+
+  background-color: #000000;
+  border: 1 #999999;
+  place-holder-color: #888888;
+  text-color: #ffffff;
+
+  padding: 5;
+}

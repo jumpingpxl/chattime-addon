@@ -29,6 +29,6 @@ public class ChatReceiveListener {
     SimpleDateFormat format = configuration.formatting().computedValue();
 
     style = style.replace("%time%", format.format(System.currentTimeMillis()));
-    event.setMessage(Component.empty().append(Component.text(style)).append(event.getMessage()));
+    event.setMessage(Component.empty().append(Component.text(style)).append(event.message()));
   }
 }

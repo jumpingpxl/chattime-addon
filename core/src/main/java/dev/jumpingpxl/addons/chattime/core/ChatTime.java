@@ -12,7 +12,6 @@ public class ChatTime extends LabyAddon<ChatTimeConfiguration> {
   @Override
   protected void enable() {
     this.registerSettingCategory();
-
     this.registerListener(ChatReceiveListener.class);
 
     this.labyAPI().lssInjector().register(this, "settings-injector.lss", "activity/settings.lss");

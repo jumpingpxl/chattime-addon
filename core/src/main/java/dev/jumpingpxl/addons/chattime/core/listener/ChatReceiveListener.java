@@ -5,6 +5,7 @@ import dev.jumpingpxl.addons.chattime.core.ChatTime;
 import dev.jumpingpxl.addons.chattime.core.ChatTimeConfiguration;
 import java.text.SimpleDateFormat;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import net.labymod.api.event.Priority;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.chat.ChatReceiveEvent;
@@ -29,6 +30,11 @@ public class ChatReceiveListener {
     SimpleDateFormat format = configuration.formatting().computedValue();
 
     style = style.replace("%time%", format.format(System.currentTimeMillis()));
-    event.setMessage(Component.empty().append(Component.text(style)).append(event.message()));
+    Component message = event.message();
+    if (style.endsWith("&r")) {
+      message = message.colorIfAbsent(NamedTextColor.WHITE);
+    }
+
+    event.setMessage((Component.empty().append(Component.text(style))).append(message));
   }
 }

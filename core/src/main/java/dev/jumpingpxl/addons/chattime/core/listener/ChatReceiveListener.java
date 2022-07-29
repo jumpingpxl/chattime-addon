@@ -3,12 +3,13 @@ package dev.jumpingpxl.addons.chattime.core.listener;
 import com.google.inject.Inject;
 import dev.jumpingpxl.addons.chattime.core.ChatTime;
 import dev.jumpingpxl.addons.chattime.core.ChatTimeConfiguration;
-import java.text.SimpleDateFormat;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.labymod.api.event.Priority;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.chat.ChatReceiveEvent;
+
+import java.text.SimpleDateFormat;
 
 public class ChatReceiveListener {
 
@@ -22,7 +23,7 @@ public class ChatReceiveListener {
   @Subscribe(Priority.LATE)
   public void onChatReceive(ChatReceiveEvent event) {
     ChatTimeConfiguration configuration = this.addon.configuration();
-    if (event.isCancelled() || !configuration.enabled()) {
+    if (event.isCancelled() || !configuration.enabled().get()) {
       return;
     }
 

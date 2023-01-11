@@ -27,7 +27,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("net.labymod.gradle", "addon", "0.2.39")
+        classpath("net.labymod.gradle", "addon", "0.2.56")
     }
 }
 
@@ -64,11 +64,6 @@ addon {
         author("JumpingPxl")
         description("Display the current time in front of every message in chat.")
         version("1.0.0")
-    }
-
-    dev {
-        releaseChannel = "improvement-addon-api"
-        commitReference = "unknown"
     }
 
     internalRelease()

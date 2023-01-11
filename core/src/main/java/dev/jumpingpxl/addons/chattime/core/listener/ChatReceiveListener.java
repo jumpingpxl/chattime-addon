@@ -3,13 +3,10 @@ package dev.jumpingpxl.addons.chattime.core.listener;
 import com.google.inject.Inject;
 import dev.jumpingpxl.addons.chattime.core.ChatTime;
 import dev.jumpingpxl.addons.chattime.core.ChatTimeConfiguration;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.labymod.api.event.Priority;
+import java.text.SimpleDateFormat;
+import net.labymod.api.client.component.Component;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.chat.ChatReceiveEvent;
-
-import java.text.SimpleDateFormat;
 
 public class ChatReceiveListener {
 
@@ -20,22 +17,20 @@ public class ChatReceiveListener {
     this.addon = addon;
   }
 
-  @Subscribe(Priority.LATE)
+  @Subscribe(127)
   public void onChatReceive(ChatReceiveEvent event) {
-    ChatTimeConfiguration configuration = this.addon.configuration();
-    if (event.isCancelled() || !configuration.enabled().get()) {
+    if (event.isCancelled()) {
       return;
     }
 
+    ChatTimeConfiguration configuration = this.addon.configuration();
     String style = configuration.style().computedValue();
     SimpleDateFormat format = configuration.formatting().computedValue();
 
     style = style.replace("%time%", format.format(System.currentTimeMillis()));
-    Component message = event.message();
-    if (style.endsWith("&r")) {
-      message = message.colorIfAbsent(NamedTextColor.WHITE);
-    }
-
-    event.setMessage((Component.empty().append(Component.text(style))).append(message));
+    event.setMessage(Component.empty()
+        .append(Component.text(style))
+        .append(event.message())
+    );
   }
 }

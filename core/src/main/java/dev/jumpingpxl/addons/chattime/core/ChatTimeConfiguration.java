@@ -8,22 +8,22 @@ import net.labymod.api.client.gui.screen.widget.widgets.input.TextFieldWidget.Te
 import net.labymod.api.configuration.loader.annotation.ConfigName;
 import net.labymod.api.configuration.loader.property.ConfigProperty;
 
-@SuppressWarnings("FieldMayBeFinal")
 @ConfigName("settings")
 public class ChatTimeConfiguration extends AddonConfig {
 
   @SwitchSetting
-  private ConfigProperty<Boolean> enabled = new ConfigProperty<>(true);
+  private final ConfigProperty<Boolean> enabled = new ConfigProperty<>(true);
 
   @TextFieldSetting
-  private ConfigProperty<String> style = new ConfigProperty<>("&e┃ &6%time% &8» &r");
+  private final ConfigProperty<String> style = new ConfigProperty<>(
+      "&e\u2503 &6%time% &8\u00BB &r");
 
   @TextFieldSetting
-  private ConfigProperty<String> format = new ConfigProperty<>("HH:mm:ss");
+  private final ConfigProperty<String> format = new ConfigProperty<>("HH:mm:ss");
 
-  private transient ChatTimeStyle chatTimeStyle = ChatTimeStyle.of(this.style.get());
+  private final transient ChatTimeStyle chatTimeStyle = ChatTimeStyle.of(this.style.get());
 
-  private transient ChatTimeFormatting chatTimeFormatting = ChatTimeFormatting.of(
+  private final transient ChatTimeFormatting chatTimeFormatting = ChatTimeFormatting.of(
       this.format.get());
 
   @Override

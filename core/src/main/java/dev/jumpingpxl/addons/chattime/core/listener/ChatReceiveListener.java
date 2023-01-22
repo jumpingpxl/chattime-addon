@@ -1,6 +1,5 @@
 package dev.jumpingpxl.addons.chattime.core.listener;
 
-import com.google.inject.Inject;
 import dev.jumpingpxl.addons.chattime.core.ChatTime;
 import dev.jumpingpxl.addons.chattime.core.ChatTimeConfiguration;
 import java.text.SimpleDateFormat;
@@ -12,8 +11,7 @@ public class ChatReceiveListener {
 
   private final ChatTime addon;
 
-  @Inject
-  private ChatReceiveListener(ChatTime addon) {
+  public ChatReceiveListener(ChatTime addon) {
     this.addon = addon;
   }
 

@@ -4,6 +4,7 @@ import dev.jumpingpxl.addons.chattime.core.ChatTime;
 import dev.jumpingpxl.addons.chattime.core.ChatTimeConfiguration;
 import java.text.SimpleDateFormat;
 import net.labymod.api.client.component.Component;
+import net.labymod.api.client.component.format.NamedTextColor;
 import net.labymod.api.event.Subscribe;
 import net.labymod.api.event.client.chat.ChatReceiveEvent;
 
@@ -28,7 +29,7 @@ public class ChatReceiveListener {
     style = style.replace("%time%", format.format(System.currentTimeMillis()));
     event.setMessage(Component.empty()
         .append(Component.text(style))
-        .append(event.message())
+        .append(event.message().colorIfAbsent(NamedTextColor.WHITE))
     );
   }
 }
